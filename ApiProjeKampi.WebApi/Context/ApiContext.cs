@@ -7,7 +7,7 @@ namespace ApiProjeKampi.WebApi.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=");
+            optionsBuilder.UseSqlServer("Data Source=DESKTOP-9DKRCP6\\SQLEXPRESS;Initial Catalog=ApiYummyDb;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False");
         }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Chef> Chefs { get; set; }
