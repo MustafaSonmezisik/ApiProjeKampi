@@ -19,7 +19,7 @@ namespace ApiProjeKampi.WebApi.Controllers
 
         [HttpGet]
         public IActionResult ChefList()
-        {
+        { 
             var values = _context.Chefs.ToList();
             return Ok(values);
         }
