@@ -8,7 +8,7 @@ namespace ApiProjeKampi.WebApi.Mapping
 {
     public class GeneralMapping : Profile
     {
-        //constructor içerisinde map işlemleri yazılır.
+        //constructor içerisinde map işlemleri yazılır..
         public GeneralMapping()
         {
             CreateMap<Feature, ResultFeatureDto>().ReverseMap();
