@@ -41,9 +41,54 @@ namespace ApiProjeKampi.WebApi.Controllers
                 _context.Products.Add(product);
                 _context.SaveChanges();
                 return Ok(new { message = "Ürün başarıyla eklendi.", data= product });
-            }
-          
+            }         
 
+        }
+
+        [HttpDelete]
+        public IActionResult DeleteProduct(int id)
+        {
+            var value = _context.Products.Find(id);
+            if (value == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                _context.Products.Remove(value);
+                _context.SaveChanges();
+                return Ok(new { message = "Ürün başarıyla silindi.", data = value });
+            }
+        }
+        [HttpGet("GetProduct")]
+        public IActionResult GetProduct(int id)
+        {
+            var value = _context.Products.Find(id);
+            if (value == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(value);
+            }
+        }
+
+        [HttpPut]
+        public IActionResult UpdateProduct(Product product)
+        {
+           var validationResult = _validator.Validate(product);
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(validationResult.Errors.Select(x => x.ErrorMessage).ToList());
+            }
+            else
+            {
+               
+                  _context.Products.Update(product);
+                    _context.SaveChanges();
+                    return Ok( "Ürün başarıyla güncellendi.");
+            }
         }
 
 
