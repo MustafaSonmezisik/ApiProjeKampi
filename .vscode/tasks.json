@@ -1,0 +1,60 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/ApiProjeKampi.WebApi.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Derleme işlemi için dotnet build komutu çalıştırılır."
+        },
+        {
+            "label": "clean",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "clean",
+                "${workspaceFolder}/ApiProjeKampi.WebApi.csproj"
+            ],
+            "problemMatcher": "$msCompile",
+            "detail": "Temizleme işlemi için dotnet clean komutu çalıştırılır."
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/ApiProjeKampi.WebApi.csproj",
+                "-c",
+                "Release",
+                "-o",
+                "${workspaceFolder}/bin/Release/net8.0/publish"
+            ],
+            "problemMatcher": "$msCompile",
+            "detail": "Yayınlama işlemi için dotnet publish komutu çalıştırılır."
+        },
+        {
+            "label": "run",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "run",
+                "--project",
+                "${workspaceFolder}/ApiProjeKampi.WebApi.csproj"
+            ],
+            "problemMatcher": "$msCompile",
+            "detail": "Projeyi çalıştırmak için dotnet run komutu çalıştırılır."
+        }
+    ]
+}
