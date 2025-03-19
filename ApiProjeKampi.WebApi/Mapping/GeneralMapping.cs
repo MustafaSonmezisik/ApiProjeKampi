@@ -25,6 +25,9 @@ namespace ApiProjeKampi.WebApi.Mapping
 
             CreateMap<Product, CreateProductDto>().ReverseMap();
 
+            //Product ve Category tabloları arasında ilişki olduğu için bu şekilde map işlemi yapılır.
+            CreateMap<Product, ResultProductWithCategoryDto>().ForMember(x=> x.CategoryName, y => y.MapFrom(z => z.Category.CategoryName)).ReverseMap();
+
 
         }
     }
