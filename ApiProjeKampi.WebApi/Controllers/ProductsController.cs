@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ApiProjeKampi.WebApi.Context;
+using ApiProjeKampi.WebApi.Dtos.ProductDtos;
 using ApiProjeKampi.WebApi.Entities;
+using AutoMapper;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,11 +17,13 @@ namespace ApiProjeKampi.WebApi.Controllers
     {
         private readonly IValidator<Product> _validator;
         private readonly ApiContext _context;
+        private readonly IMapper _mapper;
 
-        public ProductsController(IValidator<Product> validator, ApiContext context)
+        public ProductsController(IValidator<Product> validator, ApiContext context, IMapper mapper)
         {
             _validator = validator;
             _context = context;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -89,6 +93,15 @@ namespace ApiProjeKampi.WebApi.Controllers
                     _context.SaveChanges();
                     return Ok( "Ürün başarıyla güncellendi.");
             }
+        }
+
+        [HttpPost("CreateProductWithCategory")]
+        public IActionResult CreateProductWithCategory(CreateProductDto productDto)
+        {
+            var value = _mapper.Map<Product>(productDto);
+            _context.Products.Add(value);
+            _context.SaveChanges();
+            return Ok("Ekleme İşlemi Başarılı.");
         }
 
 
