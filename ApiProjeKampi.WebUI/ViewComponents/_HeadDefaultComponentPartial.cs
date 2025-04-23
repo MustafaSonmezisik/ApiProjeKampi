@@ -8,6 +8,5 @@ namespace ApiProjeKampi.WebUI.ViewComponents
         {
             return View();
         }
-
     }
 }
