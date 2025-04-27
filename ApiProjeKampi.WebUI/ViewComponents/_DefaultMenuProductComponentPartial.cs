@@ -1,16 +1,14 @@
-﻿using System.Threading.Tasks;
-using ApiProjeKampi.WebUI.Dtos.CategoryDtos;
-using ApiProjeKampi.WebUI.Dtos.ServiceDtos;
+﻿using ApiProjeKampi.WebUI.Dtos.ProductDtos;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace ApiProjeKampi.WebUI.ViewComponents
 {
-    public class _DefaultMenuCategoryComponentPartial : ViewComponent
+    public class _DefaultMenuProductComponentPartial : ViewComponent
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public _DefaultMenuCategoryComponentPartial(IHttpClientFactory httpClientFactory)
+        public _DefaultMenuProductComponentPartial(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
@@ -18,11 +16,11 @@ namespace ApiProjeKampi.WebUI.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7105/api/Categories");
+            var responseMessage = await client.GetAsync("https://localhost:7105/api/Products");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultProductDto>>(jsonData);
                 return View(values);
             }
             return View();
